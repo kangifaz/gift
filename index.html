@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kado Ulang Tahun untuk Cintaku</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset dan dasar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #5a3d2b;
+            overflow-x: hidden;
+            height: 100vh;
+            scroll-behavior: smooth;
+        }
+
+        /* Section umum */
+        .section {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        /* Section 1: Animasi Lilin */
+        #section1 {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+
+        .birthday-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #d2691e;
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .candle-container {
+            position: relative;
+            width: 200px;
+            height: 300px;
+            margin: 20px 0 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .candle {
+            width: 60px;
+            height: 200px;
+            background: linear-gradient(to right, #ffb347, #ffcc33);
+            border-radius: 30px 30px 5px 5px;
+            position: relative;
+            box-shadow: inset -5px 0px 10px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+        }
+
+        .candle::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 30px;
+            background: #ff9900;
+            border-radius: 50%;
+        }
+
+        .wick {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 20px;
+            background: #333;
+            border-radius: 2px;
+            z-index: 3;
+        }
+
+        .flame {
+            position: absolute;
+            top: -65px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 60px;
+            background: linear-gradient(to bottom, #ffef00, #ff9900, #ff3300);
+            border-radius: 50% 50% 20% 20%;
+            box-shadow: 0 0 30px 15px rgba(255, 153, 0, 0.6);
+            z-index: 1;
+            animation: flicker 0.8s infinite alternate;
+            transition: all 0.5s ease;
+        }
+
+        @keyframes flicker {
+            0%, 100% {
+                transform: translateX(-50%) scale(1);
+                opacity: 0.9;
+            }
+            50% {
+                transform: translateX(-50%) scale(1.05);
+                opacity: 1;
+            }
+        }
+
+        .flame.extinguished {
+            opacity: 0;
+            transform: translateX(-50%) scale(0.1);
+            box-shadow: none;
+        }
+
+        .smoke {
+            position: absolute;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 10px;
+            background: rgba(100, 100, 100, 0.8);
+            border-radius: 50%;
+            opacity: 0;
+            z-index: 0;
+        }
+
+        .smoke.poof {
+            animation: poof 1.5s forwards;
+        }
+
+        @keyframes poof {
+            0% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-100px) scale(5);
+            }
+        }
+
+        .blow-btn {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.3rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(255, 126, 95, 0.4);
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            z-index: 10;
+        }
+
+        .blow-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 126, 95, 0.6);
+        }
+
+        .blow-btn:active {
+            transform: translateY(0);
+        }
+
+        .instruction {
+            margin-top: 20px;
+            color: #8b5a2b;
+            font-style: italic;
+            text-align: center;
+            max-width: 300px;
+        }
+
+        /* Section 2: Puisi Romantis */
+        #section2 {
+            background: linear-gradient(135deg, #fad0c4 0%, #ffd1ff 100%);
+        }
+
+        .poem-container {
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            padding: 40px 30px;
+            max-width: 800px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin: 0 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        .poem-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #b76e79;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .poem-content {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #5a3d2b;
+            text-align: left;
+        }
+
+        .poem-content p {
+            margin-bottom: 20px;
+            text-indent: 40px;
+        }
+
+        .heart-divider {
+            font-size: 2rem;
+            color: #ff7e5f;
+            margin: 20px 0;
+        }
+
+        /* Section 3: Harapan, Doa & Kado */
+        #section3 {
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+        }
+
+        .wish-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 40px 30px;
+            max-width: 800px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin: 0 20px 40px;
+        }
+
+        .wish-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8rem;
+            color: #6a5acd;
+            margin-bottom: 25px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .wish-content {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            color: #5a3d2b;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .gift-btn {
+            background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border: none;
+            padding: 18px 45px;
+            font-size: 1.3rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            box-shadow: 0 5px 20px rgba(106, 17, 203, 0.4);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .gift-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(106, 17, 203, 0.6);
+        }
+
+        .gift-btn i {
+            font-size: 1.5rem;
+        }
+
+        /* Musik Kontrol */
+        .music-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50px;
+            padding: 10px 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .music-btn {
+            background: none;
+            border: none;
+            color: #ff7e5f;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .music-btn:hover {
+            background-color: rgba(255, 126, 95, 0.1);
+        }
+
+        .song-info {
+            font-size: 0.8rem;
+            color: #5a3d2b;
+            max-width: 150px;
+            display: none;
+        }
+
+        .music-controls:hover .song-info {
+            display: block;
+        }
+
+        /* Navigasi section */
+        .section-nav {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 90;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dot.active {
+            background-color: #ff7e5f;
+            transform: scale(1.3);
+        }
+
+        /* Responsif */
+        @media (max-width: 768px) {
+            .birthday-title {
+                font-size: 2.5rem;
+            }
+
+            .poem-title, .wish-title {
+                font-size: 2.2rem;
+            }
+
+            .poem-container, .wish-container {
+                padding: 30px 20px;
+                margin: 0 15px;
+            }
+
+            .poem-content, .wish-content {
+                font-size: 1.1rem;
+            }
+
+            .blow-btn, .gift-btn {
+                padding: 14px 30px;
+                font-size: 1.1rem;
+            }
+
+            .candle-container {
+                width: 150px;
+                height: 250px;
+            }
+
+            .candle {
+                width: 50px;
+                height: 160px;
+            }
+
+            .section-nav {
+                right: 10px;
+            }
+
+            .music-controls {
+                bottom: 10px;
+                right: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .birthday-title {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+
+            .poem-title, .wish-title {
+                font-size: 1.8rem;
+            }
+
+            .poem-content, .wish-content {
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+
+            .blow-btn, .gift-btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(90, 61, 43, 0.7);
+            font-size: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator i {
+            font-size: 1.5rem;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        #section3 .scroll-indicator {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Section 1: Animasi Lilin -->
+    <section id="section1" class="section">
+        <h1 class="birthday-title">Selamat Ulang Tahun, Sayang!</h1>
+
+        <div class="candle-container">
+            <div class="candle"></div>
+            <div class="wick"></div>
+            <div class="flame" id="flame"></div>
+            <div class="smoke" id="smoke"></div>
+        </div>
+
+        <button class="blow-btn" id="blowBtn">
+            <i class="fas fa-wind"></i> Tiup Lilinnya, Sayang
+        </button>
+
+        <p class="instruction">Klik tombol di atas untuk meniup lilin dan lanjutkan ke pesan khusus untukmu</p>
+
+        <div class="scroll-indicator">
+            <span>Scroll ke bawah</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Section 2: Puisi Romantis -->
+    <section id="section2" class="section">
+        <div class="poem-container">
+            <h2 class="poem-title">Untuk Cintaku...</h2>
+            <div class="poem-content">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+                <div class="heart-divider">
+                    <i class="fas fa-heart"></i>
+                    <i class="fas fa-heart"></i>
+                    <i class="fas fa-heart"></i>
+                </div>
+
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+
+                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <span>Scroll ke bawah</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Section 3: Harapan, Doa, & Kado -->
+    <section id="section3" class="section">
+        <div class="wish-container">
+            <h2 class="wish-title">Harapan & Doa untukmu</h2>
+            <div class="wish-content">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+
+            <button class="gift-btn" id="giftBtn">
+                <i class="fas fa-gift"></i> Cek Kado Kamu Disini, Sayang!
+            </button>
+        </div>
+    </section>
+
+    <!-- Navigasi Section -->
+    <div class="section-nav">
+        <div class="nav-dot active" data-section="1"></div>
+        <div class="nav-dot" data-section="2"></div>
+        <div class="nav-dot" data-section="3"></div>
+    </div>
+
+    <!-- Kontrol Musik -->
+    <div class="music-controls">
+        <button class="music-btn" id="playPauseBtn">
+            <i class="fas fa-play" id="playIcon"></i>
+            <i class="fas fa-pause" id="pauseIcon" style="display: none;"></i>
+        </button>
+        <button class="music-btn" id="muteBtn">
+            <i class="fas fa-volume-up" id="volumeIcon"></i>
+            <i class="fas fa-volume-mute" id="muteIcon" style="display: none;"></i>
+        </button>
+        <div class="song-info">
+            Sedang diputar: "My Love" - LeeHi (Instrumental)
+        </div>
+    </div>
+
+    <!-- Audio Player (tersembunyi) -->
+    <audio id="bgMusic" loop>
+        <!-- Sumber musik: Lagu romantis "My Love" oleh LeeHi versi instrumental dari YouTube Audio Library -->
+        <source src="https://assets.mixkit.co/music/preview/mixkit-my-love-482.mp3" type="audio/mpeg">
+        Browser Anda tidak mendukung elemen audio.
+    </audio>
+
+    <script>
+        // Inisialisasi variabel global
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elemen DOM
+            const blowBtn = document.getElementById('blowBtn');
+            const flame = document.getElementById('flame');
+            const smoke = document.getElementById('smoke');
+            const giftBtn = document.getElementById('giftBtn');
+            const bgMusic = document.getElementById('bgMusic');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const muteBtn = document.getElementById('muteBtn');
+            const playIcon = document.getElementById('playIcon');
+            const pauseIcon = document.getElementById('pauseIcon');
+            const volumeIcon = document.getElementById('volumeIcon');
+            const muteIcon = document.getElementById('muteIcon');
+            const navDots = document.querySelectorAll('.nav-dot');
+            const sections = document.querySelectorAll('.section');
+
+            // State untuk musik
+            let isPlaying = false;
+            let isMuted = false;
+
+            // Fungsi untuk memulai musik
+            function startMusic() {
+                // Beberapa browser memerlukan interaksi pengguna untuk memutar audio
+                bgMusic.play().then(() => {
+                    isPlaying = true;
+                    playIcon.style.display = 'none';
+                    pauseIcon.style.display = 'block';
+                }).catch(error => {
+                    console.log("Autoplay diblokir: ", error);
+                    // Tampilkan pesan bahwa musik perlu diaktifkan manual
+                    alert("Untuk pengalaman terbaik, aktifkan musik dengan menekan tombol play.");
+                });
+            }
+
+            // Mulai musik secara otomatis (mungkin diblokir oleh browser)
+            startMusic();
+
+            // Event listener untuk tombol play/pause
+            playPauseBtn.addEventListener('click', function() {
+                if (isPlaying) {
+                    bgMusic.pause();
+                    playIcon.style.display = 'block';
+                    pauseIcon.style.display = 'none';
+                } else {
+                    bgMusic.play();
+                    playIcon.style.display = 'none';
+                    pauseIcon.style.display = 'block';
+                }
+                isPlaying = !isPlaying;
+            });
+
+            // Event listener untuk tombol mute/unmute
+            muteBtn.addEventListener('click', function() {
+                if (isMuted) {
+                    bgMusic.muted = false;
+                    volumeIcon.style.display = 'block';
+                    muteIcon.style.display = 'none';
+                } else {
+                    bgMusic.muted = true;
+                    volumeIcon.style.display = 'none';
+                    muteIcon.style.display = 'block';
+                }
+                isMuted = !isMuted;
+            });
+
+            // Fungsi untuk animasi meniup lilin
+            blowBtn.addEventListener('click', function() {
+                // Tambahkan efek suara tiupan (opsional)
+                const blowSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-candle-blow-738.mp3');
+                blowSound.volume = 0.3;
+                blowSound.play();
+
+                // Animasi api padam
+                flame.classList.add('extinguished');
+
+                // Animasi asap
+                smoke.classList.add('poof');
+
+                // Nonaktifkan tombol setelah ditekan
+                blowBtn.disabled = true;
+                blowBtn.style.opacity = '0.7';
+                blowBtn.style.cursor = 'default';
+
+                // Scroll ke section 2 setelah delay
+                setTimeout(function() {
+                    document.getElementById('section2').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+
+                    // Update navigasi dot
+                    updateNavDots(2);
+                }, 1000);
+            });
+
+            // Fungsi untuk tombol kado
+            giftBtn.addEventListener('click', function() {
+                // Ganti URL ini dengan link kado sesungguhnya
+                const giftUrl = 'https://example.com';
+
+                // Buka link di tab baru
+                window.open(giftUrl, '_blank');
+
+                // Tambahkan efek konfeti (sederhana)
+                createConfetti();
+            });
+
+            // Fungsi untuk membuat efek konfeti
+            function createConfetti() {
+                const colors = ['#ff7e5f', '#feb47b', '#6a11cb', '#2575fc', '#ffcc00'];
+                const confettiCount = 50;
+
+                for (let i = 0; i < confettiCount; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.position = 'fixed';
+                    confetti.style.width = '10px';
+                    confetti.style.height = '10px';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = '-10px';
+                    confetti.style.zIndex = '9999';
+                    confetti.style.opacity = '0.8';
+
+                    document.body.appendChild(confetti);
+
+                    // Animasi jatuh
+                    const animation = confetti.animate([
+                        { transform: 'translateY(0) rotate(0deg)', opacity: 0.8 },
+                        { transform: `translateY(${window.innerHeight + 10}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                    ], {
+                        duration: 1000 + Math.random() * 2000,
+                        easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)'
+                    });
+
+                    // Hapus elemen setelah animasi selesai
+                    animation.onfinish = () => confetti.remove();
+                }
+            }
+
+            // Fungsi untuk update navigasi dot berdasarkan section yang aktif
+            function updateNavDots(sectionNumber) {
+                navDots.forEach(dot => {
+                    dot.classList.remove('active');
+                    if (parseInt(dot.dataset.section) === sectionNumber) {
+                        dot.classList.add('active');
+                    }
+                });
+            }
+
+            // Event listener untuk navigasi dot
+            navDots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    const sectionNumber = this.dataset.section;
+                    document.getElementById(`section${sectionNumber}`).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+
+                    updateNavDots(parseInt(sectionNumber));
+                });
+            });
+
+            // Deteksi scroll untuk update navigasi dot
+            let isScrolling = false;
+            window.addEventListener('scroll', function() {
+                if (isScrolling) return;
+
+                isScrolling = true;
+
+                setTimeout(function() {
+                    // Cari section yang sedang terlihat
+                    let currentSection = 1;
+                    const scrollPosition = window.scrollY + window.innerHeight / 2;
+
+                    sections.forEach((section, index) => {
+                        const sectionTop = section.offsetTop;
+                        const sectionBottom = sectionTop + section.offsetHeight;
+
+                        if (scrollPosition >= sectionTop && scrollPosition <= sectionBottom) {
+                            currentSection = index + 1;
+                        }
+                    });
+
+                    updateNavDots(currentSection);
+                    isScrolling = false;
+                }, 100);
+            });
+
+            // Inisialisasi scroll untuk section pertama
+            updateNavDots(1);
+
+            // Tambahkan event listener untuk tombol keyboard (untuk navigasi dengan keyboard)
+            document.addEventListener('keydown', function(event) {
+                // Panah bawah atau spasi untuk scroll ke bawah
+                if (event.key === 'ArrowDown' || event.key === ' ') {
+                    event.preventDefault();
+
+                    // Tentukan section berikutnya
+                    let currentSection = 1;
+                    const scrollPosition = window.scrollY + window.innerHeight / 2;
+
+                    sections.forEach((section, index) => {
+                        const sectionTop = section.offsetTop;
+                        const sectionBottom = sectionTop + section.offsetHeight;
+
+                        if (scrollPosition >= sectionTop && scrollPosition <= sectionBottom) {
+                            currentSection = index + 1;
+                        }
+                    });
+
+                    // Scroll ke section berikutnya jika ada
+                    if (currentSection < sections.length) {
+                        document.getElementById(`section${currentSection + 1}`).scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                        updateNavDots(currentSection + 1);
+                    }
+                }
+
+                // Panah atas untuk scroll ke atas
+                if (event.key === 'ArrowUp') {
+                    event.preventDefault();
+
+                    // Tentukan section sebelumnya
+                    let currentSection = 1;
+                    const scrollPosition = window.scrollY + window.innerHeight / 2;
+
+                    sections.forEach((section, index) => {
+                        const sectionTop = section.offsetTop;
+                        const sectionBottom = sectionTop + section.offsetHeight;
+
+                        if (scrollPosition >= sectionTop && scrollPosition <= sectionBottom) {
+                            currentSection = index + 1;
+                        }
+                    });
+
+                    // Scroll ke section sebelumnya jika ada
+                    if (currentSection > 1) {
+                        document.getElementById(`section${currentSection - 1}`).scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                        updateNavDots(currentSection - 1);
+                    }
+                }
+            });
+
+            // Tambahkan pesan khusus di console
+            console.log("%c✨ Untuk Cintaku ✨", "color: #ff7e5f; font-size: 18px; font-weight: bold;");
+            console.log("%cSelamat ulang tahun sayang! Semoga landing page sederhana ini bisa menjadi kado digital yang berarti untukmu. ❤️", "color: #5a3d2b; font-size: 14px;");
+        });
+    </script>
+</body>
+</html>
