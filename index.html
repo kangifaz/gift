@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kado Ulang Tahun untuk Cintaku</title>
+    <title>Selamat Ulang Tahun untuk Ulfaku ❤️</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        /* Reset dan dasar */
+        /* ===== RESET & BASE STYLES ===== */
         * {
             margin: 0;
             padding: 0;
@@ -22,45 +23,187 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            color: #5a3d2b;
+            color: #333;
             overflow-x: hidden;
-            height: 100vh;
-            scroll-behavior: smooth;
+            background: #fff;
+            -webkit-tap-highlight-color: transparent;
+            line-height: 1.6;
         }
 
-        /* Section umum */
+        /* ===== COUNTDOWN PAGE ===== */
+        .countdown-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffefd5 0%, #ffdab9 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            padding: 30px;
+            text-align: center;
+            transition: opacity 0.5s ease;
+        }
+
+        .countdown-page.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .countdown-content {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px 35px;
+            max-width: 700px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 126, 95, 0.2);
+        }
+
+        .countdown-icon {
+            font-size: 4rem;
+            color: #ff7e5f;
+            margin-bottom: 25px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .countdown-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: #d2691e;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .countdown-message {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 35px;
+            text-align: left;
+            padding: 0 10px;
+        }
+
+        .countdown-message p {
+            margin-bottom: 15px;
+        }
+
+        .countdown-timer {
+            background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 25px 0;
+            box-shadow: 0 8px 20px rgba(255, 126, 95, 0.3);
+        }
+
+        .timer-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .timer-display {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .time-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .time-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1;
+            min-width: 70px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .time-label {
+            font-size: 0.85rem;
+            margin-top: 5px;
+            opacity: 0.9;
+        }
+
+        .date-info {
+            font-size: 1rem;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .test-mode-btn {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.3);
+        }
+
+        .test-mode-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(106, 17, 203, 0.4);
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .main-content {
+            display: none;
+        }
+
+        .main-content.active {
+            display: block;
+        }
+
+        /* ===== SECTION STYLES ===== */
         .section {
-            height: 100vh;
+            min-height: 100vh;
             width: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 30px 20px;
             position: relative;
-            overflow: hidden;
-            transition: all 0.5s ease;
         }
 
         /* Section 1: Animasi Lilin */
         #section1 {
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            background: linear-gradient(135deg, #ffefd5 0%, #ffdab9 100%);
         }
 
         .birthday-title {
-            font-family: 'Dancing Script', cursive;
+            font-family: 'Playfair Display', serif;
             font-size: 3.5rem;
             color: #d2691e;
             text-align: center;
-            margin-bottom: 40px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 50px;
+            font-weight: 600;
+            line-height: 1.2;
+            max-width: 800px;
         }
 
         .candle-container {
             position: relative;
-            width: 200px;
-            height: 300px;
-            margin: 20px 0 40px;
+            width: 180px;
+            height: 280px;
+            margin: 25px 0 50px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -68,60 +211,65 @@
 
         .candle {
             width: 60px;
-            height: 200px;
-            background: linear-gradient(to right, #ffb347, #ffcc33);
-            border-radius: 30px 30px 5px 5px;
+            height: 180px;
+            background: linear-gradient(to right, #ffb347, #ffcc33, #ffb347);
+            border-radius: 30px 30px 6px 6px;
             position: relative;
-            box-shadow: inset -5px 0px 10px rgba(0, 0, 0, 0.1);
+            box-shadow:
+                inset -6px 0px 12px rgba(0, 0, 0, 0.1),
+                0 8px 20px rgba(0, 0, 0, 0.12);
             z-index: 2;
         }
 
         .candle::before {
             content: '';
             position: absolute;
-            top: -10px;
+            top: -12px;
             left: 50%;
             transform: translateX(-50%);
             width: 70px;
             height: 30px;
             background: #ff9900;
             border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
         }
 
         .wick {
             position: absolute;
-            top: -25px;
+            top: -30px;
             left: 50%;
             transform: translateX(-50%);
             width: 4px;
             height: 20px;
-            background: #333;
+            background: #222;
             border-radius: 2px;
             z-index: 3;
         }
 
         .flame {
             position: absolute;
-            top: -65px;
+            top: -70px;
             left: 50%;
             transform: translateX(-50%);
-            width: 30px;
-            height: 60px;
-            background: linear-gradient(to bottom, #ffef00, #ff9900, #ff3300);
+            width: 35px;
+            height: 65px;
+            background: linear-gradient(to bottom, #ffff00, #ffaa00, #ff3300);
             border-radius: 50% 50% 20% 20%;
-            box-shadow: 0 0 30px 15px rgba(255, 153, 0, 0.6);
+            box-shadow:
+                0 0 30px 15px rgba(255, 153, 0, 0.6),
+                0 0 80px 30px rgba(255, 100, 0, 0.25);
             z-index: 1;
-            animation: flicker 0.8s infinite alternate;
-            transition: all 0.5s ease;
+            animation: flicker 0.5s infinite alternate;
+            transition: all 0.6s ease;
         }
 
         @keyframes flicker {
             0%, 100% {
                 transform: translateX(-50%) scale(1);
-                opacity: 0.9;
+                opacity: 0.95;
             }
             50% {
-                transform: translateX(-50%) scale(1.05);
+                transform: translateX(-50%) scale(1.03);
                 opacity: 1;
             }
         }
@@ -137,16 +285,16 @@
             top: -100px;
             left: 50%;
             transform: translateX(-50%);
-            width: 10px;
-            height: 10px;
-            background: rgba(100, 100, 100, 0.8);
+            width: 12px;
+            height: 12px;
+            background: rgba(150, 150, 150, 0.9);
             border-radius: 50%;
             opacity: 0;
             z-index: 0;
         }
 
         .smoke.poof {
-            animation: poof 1.5s forwards;
+            animation: poof 1.8s ease-out forwards;
         }
 
         @keyframes poof {
@@ -156,166 +304,258 @@
             }
             100% {
                 opacity: 0;
-                transform: translateX(-50%) translateY(-100px) scale(5);
+                transform: translateX(calc(-50% + var(--smoke-offset, 0px))) translateY(-120px) scale(5);
             }
         }
 
         .blow-btn {
-            background: linear-gradient(to right, #ff7e5f, #feb47b);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            font-size: 1.3rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            box-shadow: 0 5px 15px rgba(255, 126, 95, 0.4);
-            transition: all 0.3s ease;
-            margin-top: 20px;
-            z-index: 10;
-        }
-
-        .blow-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(255, 126, 95, 0.6);
-        }
-
-        .blow-btn:active {
-            transform: translateY(0);
-        }
-
-        .instruction {
-            margin-top: 20px;
-            color: #8b5a2b;
-            font-style: italic;
-            text-align: center;
-            max-width: 300px;
-        }
-
-        /* Section 2: Puisi Romantis */
-        #section2 {
-            background: linear-gradient(135deg, #fad0c4 0%, #ffd1ff 100%);
-        }
-
-        .poem-container {
-            background-color: rgba(255, 255, 255, 0.85);
-            border-radius: 20px;
-            padding: 40px 30px;
-            max-width: 800px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            margin: 0 20px;
-            backdrop-filter: blur(5px);
-        }
-
-        .poem-title {
-            font-family: 'Dancing Script', cursive;
-            font-size: 3rem;
-            color: #b76e79;
-            margin-bottom: 30px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-        }
-
-        .poem-content {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: #5a3d2b;
-            text-align: left;
-        }
-
-        .poem-content p {
-            margin-bottom: 20px;
-            text-indent: 40px;
-        }
-
-        .heart-divider {
-            font-size: 2rem;
-            color: #ff7e5f;
-            margin: 20px 0;
-        }
-
-        /* Section 3: Harapan, Doa & Kado */
-        #section3 {
-            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
-        }
-
-        .wish-container {
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            padding: 40px 30px;
-            max-width: 800px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            margin: 0 20px 40px;
-        }
-
-        .wish-title {
-            font-family: 'Dancing Script', cursive;
-            font-size: 2.8rem;
-            color: #6a5acd;
-            margin-bottom: 25px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-        }
-
-        .wish-content {
-            font-size: 1.2rem;
-            line-height: 1.7;
-            color: #5a3d2b;
-            margin-bottom: 30px;
-            text-align: left;
-        }
-
-        .gift-btn {
-            background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+            background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
             color: white;
             border: none;
             padding: 18px 45px;
             font-size: 1.3rem;
             border-radius: 50px;
             cursor: pointer;
-            font-family: 'Poppins', sans-serif;
             font-weight: 600;
-            box-shadow: 0 5px 20px rgba(106, 17, 203, 0.4);
+            box-shadow: 0 10px 25px rgba(255, 126, 95, 0.35);
+            transition: all 0.3s ease;
+            margin-top: 35px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .blow-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(255, 126, 95, 0.5);
+        }
+
+        .blow-btn:active {
+            transform: translateY(0);
+        }
+
+        .blow-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .instruction {
+            margin-top: 25px;
+            color: #7a5c3c;
+            font-style: italic;
+            text-align: center;
+            max-width: 350px;
+            font-size: 1.05rem;
+        }
+
+        /* Section 2: Pesan 1 */
+        #section2 {
+            background: linear-gradient(135deg, #f8e1e7 0%, #f5d0e1 100%);
+        }
+
+        .message-container {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 20px;
+            padding: 50px 45px;
+            max-width: 1100px;
+            width: 95%;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin: 0 auto;
+        }
+
+        .message-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: #b76e79;
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .message-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #ff7e5f, transparent);
+        }
+
+        .message-content {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #444;
+            text-align: justify;
+            padding: 0 10px;
+        }
+
+        .message-content p {
+            margin-bottom: 24px;
+            text-indent: 40px;
+        }
+
+        .message-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #ff7e5f, transparent);
+            margin: 35px 0;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Section 3: Pesan 2 & Penutup */
+        #section3 {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding-bottom: 80px;
+        }
+
+        .closing-container {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 20px;
+            padding: 50px 45px;
+            max-width: 1100px;
+            width: 95%;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin: 0 auto;
+        }
+
+        .closing-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.6rem;
+            color: #5c6bc0;
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .closing-content {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #444;
+            text-align: justify;
+            padding: 0 10px;
+        }
+
+        .closing-content p {
+            margin-bottom: 24px;
+            text-indent: 40px;
+        }
+
+        .closing-content p:first-child {
+            text-indent: 0;
+            font-style: italic;
+            color: #ff7e5f;
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 15px;
+            background: rgba(255, 126, 95, 0.08);
+            border-radius: 8px;
+            border-left: 3px solid #ff7e5f;
+        }
+
+        .final-note {
+            font-style: italic;
+            margin: 40px 0 30px;
+            text-align: center;
+            color: #ff7e5f;
+            font-size: 1.3rem;
+            padding: 20px;
+            background: rgba(255, 126, 95, 0.08);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 126, 95, 0.15);
+            line-height: 1.7;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        /* Tombol Kado */
+        .gift-btn {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border: none;
+            padding: 18px 45px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 10px 25px rgba(106, 17, 203, 0.35);
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
+            margin-top: 30px;
         }
 
         .gift-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(106, 17, 203, 0.6);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(106, 17, 203, 0.5);
+        }
+
+        .gift-btn:active {
+            transform: translateY(0);
         }
 
         .gift-btn i {
             font-size: 1.5rem;
         }
 
-        /* Musik Kontrol */
-        .music-controls {
+        /* Modal Popup Kado */
+        .modal-overlay {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 100;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 50px;
-            padding: 10px 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
             display: flex;
+            justify-content: center;
             align-items: center;
-            gap: 10px;
-            backdrop-filter: blur(5px);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
         }
 
-        .music-btn {
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #fff9f0 0%, #fff0e6 100%);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 126, 95, 0.2);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
             background: none;
             border: none;
             color: #ff7e5f;
             font-size: 1.5rem;
             cursor: pointer;
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -323,22 +563,153 @@
             transition: all 0.3s ease;
         }
 
+        .modal-close:hover {
+            background-color: rgba(255, 126, 95, 0.1);
+        }
+
+        .modal-icon {
+            font-size: 3.5rem;
+            color: #ff7e5f;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: #d2691e;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .modal-message {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .modal-continue-btn {
+            background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 8px 20px rgba(255, 126, 95, 0.4);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .modal-continue-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(255, 126, 95, 0.6);
+        }
+
+        /* Responsive untuk modal */
+        @media (max-width: 768px) {
+            .modal-content {
+                padding: 30px 25px;
+            }
+
+            .modal-title {
+                font-size: 1.8rem;
+            }
+
+            .modal-message {
+                font-size: 1rem;
+            }
+
+            .gift-btn {
+                padding: 16px 40px;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .modal-content {
+                padding: 25px 20px;
+            }
+
+            .modal-title {
+                font-size: 1.6rem;
+            }
+
+            .modal-message {
+                font-size: 0.95rem;
+            }
+
+            .gift-btn {
+                padding: 14px 35px;
+                font-size: 1rem;
+            }
+        }
+        /* ===== MUSIC CONTROLS SEDERHANA ===== */
+        .music-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 50px;
+            padding: 10px 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid rgba(255, 126, 95, 0.15);
+        }
+
+        .music-btn {
+            background: none;
+            border: none;
+            color: #ff7e5f;
+            font-size: 1.4rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
         .music-btn:hover {
             background-color: rgba(255, 126, 95, 0.1);
         }
 
-        .song-info {
-            font-size: 0.8rem;
-            color: #5a3d2b;
-            max-width: 150px;
-            display: none;
+        .volume-slider {
+            width: 80px;
+            transition: all 0.3s ease;
         }
 
-        .music-controls:hover .song-info {
-            display: block;
+        .volume-slider input {
+            width: 100%;
+            height: 4px;
+            -webkit-appearance: none;
+            background: rgba(255, 126, 95, 0.2);
+            border-radius: 2px;
+            outline: none;
+            cursor: pointer;
         }
 
-        /* Navigasi section */
+        .volume-slider input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 14px;
+            height: 14px;
+            background: #ff7e5f;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ===== SECTION NAVIGATION ===== */
         .section-nav {
             position: fixed;
             right: 20px;
@@ -347,65 +718,152 @@
             z-index: 90;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
         }
 
         .nav-dot {
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.5);
+            background-color: rgba(255, 255, 255, 0.6);
             border: 2px solid rgba(255, 255, 255, 0.8);
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
+        .nav-dot:hover {
+            transform: scale(1.2);
+            background-color: rgba(255, 126, 95, 0.3);
+        }
+
         .nav-dot.active {
             background-color: #ff7e5f;
             transform: scale(1.3);
+            box-shadow: 0 0 12px rgba(255, 126, 95, 0.5);
         }
 
-        /* Responsif */
+        /* ===== SCROLL INDICATOR ===== */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(90, 61, 43, 0.7);
+            font-size: 0.95rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator i {
+            font-size: 1.5rem;
+            animation: arrowBounce 1.5s infinite;
+        }
+
+        @keyframes arrowBounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-8px);
+            }
+            60% {
+                transform: translateY(-4px);
+            }
+        }
+
+        /* ===== RESPONSIVE STYLES ===== */
+        @media (max-width: 1200px) {
+            .message-container, .closing-container {
+                max-width: 950px;
+                padding: 45px 40px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .birthday-title {
+                font-size: 3rem;
+            }
+
+            .message-title, .closing-title {
+                font-size: 2.4rem;
+            }
+
+            .message-container, .closing-container {
+                padding: 40px 35px;
+                max-width: 850px;
+            }
+
+            .message-content, .closing-content {
+                font-size: 1.1rem;
+            }
+        }
+
         @media (max-width: 768px) {
             .birthday-title {
                 font-size: 2.5rem;
+                margin-bottom: 40px;
             }
 
-            .poem-title, .wish-title {
-                font-size: 2.2rem;
+            .message-title, .closing-title {
+                font-size: 2rem;
             }
 
-            .poem-container, .wish-container {
-                padding: 30px 20px;
-                margin: 0 15px;
+            .message-container, .closing-container {
+                padding: 35px 30px;
+                width: 98%;
             }
 
-            .poem-content, .wish-content {
-                font-size: 1.1rem;
+            .message-content, .closing-content {
+                font-size: 1.05rem;
+                line-height: 1.7;
+                padding: 0;
             }
 
-            .blow-btn, .gift-btn {
-                padding: 14px 30px;
-                font-size: 1.1rem;
+            .message-content p, .closing-content p {
+                text-indent: 30px;
+                margin-bottom: 20px;
+            }
+
+            .blow-btn {
+                padding: 16px 40px;
+                font-size: 1.2rem;
             }
 
             .candle-container {
                 width: 150px;
-                height: 250px;
+                height: 240px;
+                margin: 20px 0 40px;
             }
 
             .candle {
                 width: 50px;
-                height: 160px;
+                height: 150px;
             }
 
             .section-nav {
-                right: 10px;
+                right: 15px;
             }
 
             .music-controls {
-                bottom: 10px;
-                right: 10px;
+                bottom: 15px;
+                right: 15px;
+                padding: 8px 12px;
+            }
+
+            .countdown-content {
+                padding: 35px 30px;
+            }
+
+            .countdown-title {
+                font-size: 2.3rem;
+            }
+
+            .time-value {
+                font-size: 2rem;
+                min-width: 60px;
             }
         }
 
@@ -415,379 +873,577 @@
                 margin-bottom: 30px;
             }
 
-            .poem-title, .wish-title {
+            .message-title, .closing-title {
                 font-size: 1.8rem;
             }
 
-            .poem-content, .wish-content {
-                font-size: 1rem;
-                line-height: 1.6;
+            .message-container, .closing-container {
+                padding: 30px 25px;
             }
 
-            .blow-btn, .gift-btn {
-                padding: 12px 25px;
+            .message-content, .closing-content {
                 font-size: 1rem;
+                line-height: 1.65;
+            }
+
+            .message-content p, .closing-content p {
+                text-indent: 25px;
+                margin-bottom: 18px;
+            }
+
+            .blow-btn {
+                padding: 14px 35px;
+                font-size: 1.1rem;
+            }
+
+            .instruction {
+                font-size: 1rem;
+                max-width: 300px;
+            }
+
+            .candle-container {
+                width: 130px;
+                height: 210px;
+                margin: 20px 0 35px;
+            }
+
+            .candle {
+                width: 45px;
+                height: 130px;
+            }
+
+            .flame {
+                width: 30px;
+                height: 55px;
+                top: -60px;
+            }
+
+            .music-controls {
+                bottom: 10px;
+                right: 10px;
+            }
+
+            .countdown-content {
+                padding: 30px 25px;
+            }
+
+            .countdown-title {
+                font-size: 1.8rem;
+            }
+
+            .timer-display {
+                gap: 10px;
+            }
+
+            .time-value {
+                font-size: 1.7rem;
+                min-width: 50px;
+            }
+
+            .time-label {
+                font-size: 0.8rem;
+            }
+
+            .final-note {
+                font-size: 1.1rem;
+                padding: 15px;
             }
         }
-
-        /* Scroll indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: rgba(90, 61, 43, 0.7);
-            font-size: 0.9rem;
-            display: flex;
-            flex-direction: column;
+        /* Tombol Kado */
+        .gift-btn {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border: none;
+            padding: 18px 45px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 10px 25px rgba(106, 17, 203, 0.35);
+            transition: all 0.3s ease;
+            display: inline-flex;
             align-items: center;
-            gap: 5px;
-            animation: bounce 2s infinite;
-        }
-
-        .scroll-indicator i {
-            font-size: 1.5rem;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            40% {
-                transform: translateX(-50%) translateY(-10px);
-            }
-            60% {
-                transform: translateX(-50%) translateY(-5px);
-            }
-        }
-
-        #section3 .scroll-indicator {
-            display: none;
+            gap: 15px;
+            margin-top: 30px;
+            /* Tambahkan ini untuk center */
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
     </style>
 </head>
 <body>
-    <!-- Section 1: Animasi Lilin -->
-    <section id="section1" class="section">
-        <h1 class="birthday-title">Selamat Ulang Tahun, Sayang!</h1>
+    <!-- Countdown Page -->
+    <div class="countdown-page" id="countdownPage">
+        <div class="countdown-content">
+            <div class="countdown-icon">
+                <i class="fas fa-hourglass-half"></i>
+            </div>
 
-        <div class="candle-container">
-            <div class="candle"></div>
-            <div class="wick"></div>
-            <div class="flame" id="flame"></div>
-            <div class="smoke" id="smoke"></div>
-        </div>
+            <h2 class="countdown-title">Mohon Ditunggu</h2>
 
-        <button class="blow-btn" id="blowBtn">
-            <i class="fas fa-wind"></i> Tiup Lilinnya, Sayang
-        </button>
+            <div class="countdown-message">
+                <p>Countdown hari spesial sedang dihitung</p>
 
-        <p class="instruction">Klik tombol di atas untuk meniup lilin dan lanjutkan ke pesan khusus untukmu</p>
 
-        <div class="scroll-indicator">
-            <span>Scroll ke bawah</span>
-            <i class="fas fa-chevron-down"></i>
-        </div>
-    </section>
+            </div>
 
-    <!-- Section 2: Puisi Romantis -->
-    <section id="section2" class="section">
-        <div class="poem-container">
-            <h2 class="poem-title">Untuk Cintaku...</h2>
-            <div class="poem-content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-                <div class="heart-divider">
-                    <i class="fas fa-heart"></i>
-                    <i class="fas fa-heart"></i>
-                    <i class="fas fa-heart"></i>
+            <div class="countdown-timer">
+                <div class="timer-title">Page akan terbuka dalam:</div>
+                <div class="timer-display">
+                    <div class="time-unit">
+                        <div class="time-value" id="days">00</div>
+                        <div class="time-label">Hari</div>
+                    </div>
+                    <div class="time-unit">
+                        <div class="time-value" id="hours">00</div>
+                        <div class="time-label">Jam</div>
+                    </div>
+                    <div class="time-unit">
+                        <div class="time-value" id="minutes">00</div>
+                        <div class="time-label">Menit</div>
+                    </div>
+                    <div class="time-unit">
+                        <div class="time-value" id="seconds">00</div>
+                        <div class="time-label">Detik</div>
+                    </div>
                 </div>
-
-                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-
-                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
-            </div>
-        </div>
-
-        <div class="scroll-indicator">
-            <span>Scroll ke bawah</span>
-            <i class="fas fa-chevron-down"></i>
-        </div>
-    </section>
-
-    <!-- Section 3: Harapan, Doa, & Kado -->
-    <section id="section3" class="section">
-        <div class="wish-container">
-            <h2 class="wish-title">Harapan & Doa untukmu</h2>
-            <div class="wish-content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <div class="date-info" id="targetDateInfo"></div>
             </div>
 
-            <button class="gift-btn" id="giftBtn">
-                <i class="fas fa-gift"></i> Cek Kado Kamu Disini, Sayang!
+            <button class="test-mode-btn" id="testModeBtn">
+                Mohon Bersabar
             </button>
         </div>
-    </section>
-
-    <!-- Navigasi Section -->
-    <div class="section-nav">
-        <div class="nav-dot active" data-section="1"></div>
-        <div class="nav-dot" data-section="2"></div>
-        <div class="nav-dot" data-section="3"></div>
     </div>
 
-    <!-- Kontrol Musik -->
-    <div class="music-controls">
-        <button class="music-btn" id="playPauseBtn">
-            <i class="fas fa-play" id="playIcon"></i>
-            <i class="fas fa-pause" id="pauseIcon" style="display: none;"></i>
-        </button>
-        <button class="music-btn" id="muteBtn">
-            <i class="fas fa-volume-up" id="volumeIcon"></i>
-            <i class="fas fa-volume-mute" id="muteIcon" style="display: none;"></i>
-        </button>
-        <div class="song-info">
-            Sedang diputar: "My Love" - LeeHi (Instrumental)
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <!-- Section 1: Animasi Lilin -->
+        <section id="section1" class="section">
+            <h1 class="birthday-title">Selamat Ulang Tahun, Ulfaku</h1>
+
+            <div class="candle-container">
+                <div class="candle"></div>
+                <div class="wick"></div>
+                <div class="flame" id="flame"></div>
+                <div class="smoke" id="smoke"></div>
+            </div>
+
+            <button class="blow-btn" id="blowBtn">
+                <i class="fas fa-wind"></i> Tiup Lilinnya
+            </button>
+
+            <p class="instruction">Klik tombol di atas untuk meniup lilin dan membaca pesan spesialku</p>
+
+            <div class="scroll-indicator">
+                <span>Scroll ke bawah</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </section>
+
+        <!-- Section 2: Pesan 1 -->
+        <section id="section2" class="section">
+            <div class="message-container">
+                <h2 class="message-title">Untuk Ulfaku, Ulfa Arofah</h2>
+                <div class="message-content">
+                    <p>Teruntuk Ulfaku, Ulfa Arofah . . . . Sebelumnya tolong maafkan Limitasi yang selalu membatasi, Maaf untuk segala kekurangan yang ada, yang terkadang banyak membuat luka. Tak ada setitikpun niat membuat perasaanmu hilang rasa.</p>
+
+                    <p>Tentang Guguran Daun yang Hanyut. Tiada satu orangpun yg berani mengatakan Perjalanan ini mudah. Sekilas hanya seperti melewati jalan setapak yang tidak begitu jauh. Namun ketika menoleh kebelakang, saat ini seperti daun yang terjatuh di mata air pegunungan. Terus hanyut dan kadang tenggelam seperti tanpa tujuan. Entah sudah sampai kapan, sampai mana dan akan sampai dimana. Kadang tak tau arah.</p>
+
+                    <p>Apakah ini sudah sampai di telaga? Apakah akan tiba di dermaga? Apakah akan masuk ke samudra? Yang jelas perjalanan ini sudah melewati senyum, luka, emosi, luapan jiwa hingga bahagia yang mungkin bisa dikenang di setiap sudut sungai perjalanan. Ada arsip di bagian sudut ingatan yang masih terus teringat, disana pernah bersama daun-daun kecil lainya dalam satu kebersamaan. Teringat kala itu masih bisa berlari bersama, bernyanyi bersama hingga menangis bersama. Kita tidak ada yang mengetahui kemana dan seperti apa perjalanan kita selanjutnya. Pada saat itu, kita tidak ada yang mengetahui akan ke arah mana kita mengalir. Cita-cita dan yang dicinta itu ada, namun sang maha kuasa tak jarang dengan kuasanya mengalirkan ke arah yang aku tak tahu akan kemana.</p>
+
+                    <div class="message-divider"></div>
+
+                    <p>Sedih? tentunya iya. apakah aku berhenti? tidak! Terus mengalir dan akan tetap seperti ini. Mungkin pada saat itu aku tidak tahu pasti akan dibawa kemana, namun satu hal yang aku pahami. Sang Pencipta mengerti, dan Peduli. Kini mau dibawa kemanapun, Telaga, Dermaga, Samudera apapun itu perjalanan sejauh ini telah mengajarkanku banyak hal. Sudah sejauh ini rupanya hanyut, berhenti tentunya bukanlah pilihan.</p>
+
+                    <p>Entah sihir seperti apa yang telah menyinari sungai tadi, kini daun yang jatuh telah menjadi mutiara yang bersinar terang. Membuat orang yang menulis bait-bait ini sungguh kehabisan kata. Ingin rasanya mengatakan, "fa aku sungguh jatuh cinta". Namun rasanya terlalu klise. Ingat pada sepenggal Puisi dari KH Zawawi Imron "Jejakku kutinggal disini, tapi senyummu kubawa pergi".</p>
+
+                    <p>Sungguh aku ingin sekali memiliki mutiara ini, meskipun ini merupakan ketidak-mungkinan yg masih disemogakan. Ingin rasanya aku mengatakan "izinkan aku mencium sebutir debu yang menempel di ujung hatimu". Sungguh aku sendiri tak tahu mengapa seperti ini, namun dalam bait lain KH Zawawi Imron mengatakan hal yg bisa aku rasa "kalau mendung hitam sudah di atas kepala jangan larang hujan turun ke bumi kalau angin bertiup dengan kencangnya, jangan larang daun-daun berguguran kalau senyummu selalu mekar dalam hatiku, jangan larang aku tetap setia dan tetap rindu padamu".</p>
+
+                    <p>Meskipun Perasaan ini cukup sulit dideskripsikan dan dirasa, namun Sapardi Djoko Damono sedikit mampu mendeskripsikan apa yg kuingin, "Aku ingin mencintaimu dengan sederhana Dengan kata yang tak sempat di ucapkan kayu kepada api yang menjadikannya abu. Aku ingin mencintaimu dengan sederhana Dengan isyarat yang tak sempat disampaikan awan kepada hujan yang menjadikannya tiada."</p>
+                </div>
+            </div>
+
+            <div class="scroll-indicator">
+                <span>Scroll ke bawah</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </section>
+
+                <!-- Section 3: Pesan 2 & Penutup -->
+        <section id="section3" class="section">
+            <div class="closing-container">
+                <h2 class="closing-title">Selamat Ulang Tahun</h2>
+                <div class="closing-content">
+                    <p>Dear Ulfa,</p>
+
+                    <p>Sepenuhnya aku sadari satu hal, Seperti Api yang membakar Kayu menjadikan sebagian tubuhnya berubah menjadi arang. Apa yang sudah hitam tidak mungkin dikembalikan. Waktu yang sudah dilalui mustahil untuk dikembalikan. Mencintaimu, adalah perjalanan takdirku. dan kurasa, memilikimu, adalah mimpi yang mungkin harus kukubur dalam-dalam. Mengusahakannya sama seperti mengembalikan hitam arang menjadi pohon yang hijau. Bermain di zona ketidak-mungkinan kadang memang mengasyikkan, bergelut dengan risiko sakit tak tertahankan.</p>
+
+                    <p>Kau tahu? dahulu aku adalah badai yang berkeliling dunia. Awanku sangat tebal dan anginku sangat kencang. Di sisi lain aku melihat kamu awalnya hanya sebuah pelangi biasa. Berwarna cerah dan berada di titik yang tinggi. Sampai di saat aku mengenalmu, kini sedikit demi sedikit hitam pekatnya awan mulai memudar. Awan yang dulu dipenuhi badai yang bergejolak kini menjadi lebih tenang dan menjadi awan yg menenangkan. Angin yang kencang perlahan berubah menjadi lebih lembut. Seakan kamu telah mendamaikan gejolak badai dalam badai ini. Aku tak paham mengapa ini terjadi, namun aku hanya bisa berdoa "Ya Allah, ulfa . . . . ."</p>
+
+                    <p>Begitulah di setiap doa, ingin rasanya kuambil tanganmu, dan mari panjatkan doa bersama. Tiada harapan lain yang bisa kuucap, tiada harapan lain yg bisa kuungkap. Aku hanya ingin senyum itu yang telah mendamaikan badai terus terjaga, terawat dan terus membuat orang-orang bahagia. terus tersenyum dan terus merekah, mekar subur dimanapun berada, kapanpun dan dimanapun.</p>
+
+                    <p>Namun, sejatinya aku adalah aku, aku adalah badai yang bergejolak. Adalah keniscayaan, kayu itu akan menjadi arang sepenuhnya, dan aku hanya bisa menyaksikan tanpa memiliki. Bahkan mungkin jika aku hanya akan menjadi tulisan yang dikenang saja. Aku hanya akan menjadi sebuah buku sejarah dalam catatanmu. Namun tentu aku akan sangat berharap senyum itu terus tumbuh. Meskipun seperti awan hitam tadi, mungkin suatu hari nanti kamu akan melupakan aku. Atau setidaknya perlahan akan ada angin yang menghapus aku, apapun itu, seperti halnya kayu yang terbakar api. Perlahan tentu akan menghilang menjadikan arang sampai abu, satu hal janjiku. Kupastikan, aku akan tetap tersenyum, Terimakasih telah memberikkan senyummu itu. Meksipun api yang membakar cukup dahsyat. Membuat kayu yang kokoh menjadi arang sampai abu. Membuat awan yang begitu pekat menjadi hilang seperti debu.</p>
+
+                    <p>Aku ingin kamu bahagia, aku ingin kamu menjadi lebih dari aku. Berbahagialah Ulfa dan keluarga, aku menginginkan dan menyayangimu lebih dari apapun, meski dengan jarak ruang dan waktu, aku harap rasa dan pesanku tersampaikan.</p>
+                </div>
+
+                <div class="final-note">
+                    "Selamat Ulang Tahun, Ulfaku"
+                </div>
+
+                <!-- Tombol Kado -->
+                <button class="gift-btn" id="giftBtn">
+                    <i class="fas fa-gift"></i> Tentang Athena
+                </button>
+            </div>
+        </section>
+        <!-- Modal Popup Kado -->
+        <div class="modal-overlay" id="giftModal">
+            <div class="modal-content">
+                <button class="modal-close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+
+                <div class="modal-icon">
+                    <i class="fas fa-gift"></i>
+                </div>
+
+                <h2 class="modal-title">Athena</h2>
+
+                <div class="modal-message">
+                    <p>Athena project bukan sekedar nama dan konsep yang aku usung secara random. Aku harap ini bisa menjadi setidaknya seperti kado.</p>
+                    <p>Ini bisa dikembangkan menjadi riset yang kompleks dan setidaknya bisa dimanfaatkan sendiri.</p>
+                    <p>Semoga kita masih bisa bersama dengan alasan athena project ini.</p>
+                    <p> Anyway, apakah Prroposalku diterima? Tolong jelaskan by chat / Call ya, ini aku gak tau jawabannya hehe</p>
+
+                </div>
+
+                <button class="modal-continue-btn" id="modalContinueBtn">
+                    <i class="fas fa-external-link-alt"></i> Lihat Athena
+                </button>
+            </div>
+        </div>
+        <!-- Section Navigation -->
+        <div class="section-nav">
+            <div class="nav-dot active" data-section="1"></div>
+            <div class="nav-dot" data-section="2"></div>
+            <div class="nav-dot" data-section="3"></div>
+        </div>
+
+        <!-- Music Controls Sederhana -->
+        <div class="music-controls" id="musicControls">
+            <button class="music-btn" id="playPauseBtn">
+                <i class="fas fa-play" id="playIcon"></i>
+                <i class="fas fa-pause" id="pauseIcon" style="display: none;"></i>
+            </button>
+            <div class="volume-slider">
+                <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="0.5">
+            </div>
+        </div>
+
+        <!-- Audio Element -->
+        <div style="display: none;">
+            <audio id="bgMusic" loop preload="metadata">
+                <!-- MUSIK LOKAL: Upload file music.mp3 di directory yang sama -->
+                <source src="music.mp3" type="audio/mpeg">
+                Browser Anda tidak mendukung elemen audio.
+            </audio>
         </div>
     </div>
 
-    <!-- Audio Player (tersembunyi) -->
-    <audio id="bgMusic" loop>
-        <!-- Sumber musik: Lagu romantis "My Love" oleh LeeHi versi instrumental dari YouTube Audio Library -->
-        <source src="https://assets.mixkit.co/music/preview/mixkit-my-love-482.mp3" type="audio/mpeg">
-        Browser Anda tidak mendukung elemen audio.
-    </audio>
-
     <script>
-        // Inisialisasi variabel global
+        // ============================================
+        // KONFIGURASI WAKTU TARGET
+        // ============================================
+        const TARGET_DATE_CONFIG = {
+            // === EDIT BAGIAN INI SESUAI KEBUTUHAN ===
+            // Format: Year, Month (0-11), Day, Hour, Minute, Second
+            targetDate: new Date(2025, 11, 26, 0, 0, 0), // 26 December 2025, 00:00
+            // HAPUS SAJA testMode, tidak perlu dikomen
+        };
+
+        // ============================================
+        // SISTEM COUNTDOWN
+        // ============================================
         document.addEventListener('DOMContentLoaded', function() {
-            // Elemen DOM
-            const blowBtn = document.getElementById('blowBtn');
-            const flame = document.getElementById('flame');
-            const smoke = document.getElementById('smoke');
-            const giftBtn = document.getElementById('giftBtn');
-            const bgMusic = document.getElementById('bgMusic');
-            const playPauseBtn = document.getElementById('playPauseBtn');
-            const muteBtn = document.getElementById('muteBtn');
-            const playIcon = document.getElementById('playIcon');
-            const pauseIcon = document.getElementById('pauseIcon');
-            const volumeIcon = document.getElementById('volumeIcon');
-            const muteIcon = document.getElementById('muteIcon');
-            const navDots = document.querySelectorAll('.nav-dot');
-            const sections = document.querySelectorAll('.section');
+            console.log('🎉 Kado Ulang Tahun Digital untuk Ulfa');
+            console.log('⏰ Waktu target:', TARGET_DATE_CONFIG.targetDate.toLocaleString());
 
-            // State untuk musik
-            let isPlaying = false;
-            let isMuted = false;
+            // Elemen countdown
+            const countdownPage = document.getElementById('countdownPage');
+            const mainContent = document.getElementById('mainContent');
+            const daysEl = document.getElementById('days');
+            const hoursEl = document.getElementById('hours');
+            const minutesEl = document.getElementById('minutes');
+            const secondsEl = document.getElementById('seconds');
+            const targetDateInfo = document.getElementById('targetDateInfo');
 
-            // Fungsi untuk memulai musik
-            function startMusic() {
-                // Beberapa browser memerlukan interaksi pengguna untuk memutar audio
-                bgMusic.play().then(() => {
-                    isPlaying = true;
-                    playIcon.style.display = 'none';
-                    pauseIcon.style.display = 'block';
-                }).catch(error => {
-                    console.log("Autoplay diblokir: ", error);
-                    // Tampilkan pesan bahwa musik perlu diaktifkan manual
-                    alert("Untuk pengalaman terbaik, aktifkan musik dengan menekan tombol play.");
-                });
+            // Update info tanggal target
+            targetDateInfo.textContent = `Pada: ${TARGET_DATE_CONFIG.targetDate.toLocaleDateString('id-ID', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            })} pukul ${TARGET_DATE_CONFIG.targetDate.toLocaleTimeString('id-ID', {
+                hour: '2-digit',
+                minute: '2-digit'
+            })}`;
+
+            // Fungsi untuk update countdown
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const targetTime = TARGET_DATE_CONFIG.targetDate.getTime();
+                const timeLeft = targetTime - now;
+
+                // PERBAIKAN: Hanya cek jika waktu sudah lewat
+                if (timeLeft <= 0) {
+                    // Tampilkan konten utama
+                    countdownPage.classList.add('hidden');
+                    mainContent.classList.add('active');
+
+                    // Inisialisasi aplikasi utama
+                    setTimeout(initializeMainApp, 300);
+
+                    console.log('✅ Waktu sudah tiba! Menampilkan kado...');
+                    return;
+                }
+
+                // Hitung hari, jam, menit, detik
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                // Update display
+                daysEl.textContent = days.toString().padStart(2, '0');
+                hoursEl.textContent = hours.toString().padStart(2, '0');
+                minutesEl.textContent = minutes.toString().padStart(2, '0');
+                secondsEl.textContent = seconds.toString().padStart(2, '0');
+
+                // Update setiap detik
+                setTimeout(updateCountdown, 1000);
             }
 
-            // Mulai musik secara otomatis (mungkin diblokir oleh browser)
-            startMusic();
+            // Mulai countdown
+            updateCountdown();
 
-            // Event listener untuk tombol play/pause
-            playPauseBtn.addEventListener('click', function() {
-                if (isPlaying) {
-                    bgMusic.pause();
-                    playIcon.style.display = 'block';
-                    pauseIcon.style.display = 'none';
-                } else {
-                    bgMusic.play();
-                    playIcon.style.display = 'none';
-                    pauseIcon.style.display = 'block';
+            // ============================================
+            // APLIKASI UTAMA (SETELAH COUNTDOWN)
+            // ============================================
+            function initializeMainApp() {
+                // ... semua kode aplikasi utama di sini ...
+                console.log('🚀 Menginisialisasi aplikasi utama...');
+
+                // Inisialisasi elemen utama
+                const elements = {
+                    // Audio
+                    bgMusic: document.getElementById('bgMusic'),
+                    playPauseBtn: document.getElementById('playPauseBtn'),
+                    volumeSlider: document.getElementById('volumeSlider'),
+                    playIcon: document.getElementById('playIcon'),
+                    pauseIcon: document.getElementById('pauseIcon'),
+
+                    // Lilin
+                    blowBtn: document.getElementById('blowBtn'),
+                    flame: document.getElementById('flame'),
+                    smoke: document.getElementById('smoke'),
+
+                    // Navigasi
+                    navDots: document.querySelectorAll('.nav-dot'),
+                    sections: document.querySelectorAll('.section'),
+
+                    // Modal Kado
+                    giftBtn: document.getElementById('giftBtn')
+                };
+
+                // ============================================
+                // SISTEM MUSIK
+                // ============================================
+                let isPlaying = false;
+                let currentVolume = 0.5;
+
+                // Coba putar musik otomatis
+                function tryPlayMusic() {
+                    const playPromise = elements.bgMusic.play();
+
+                    if (playPromise !== undefined) {
+                        playPromise.then(() => {
+                            console.log('✅ Musik berhasil diputar');
+                            isPlaying = true;
+                            elements.playIcon.style.display = 'none';
+                            elements.pauseIcon.style.display = 'block';
+                        }).catch(error => {
+                            console.log('⚠️ Musik memerlukan interaksi pengguna');
+                        });
+                    }
                 }
-                isPlaying = !isPlaying;
-            });
 
-            // Event listener untuk tombol mute/unmute
-            muteBtn.addEventListener('click', function() {
-                if (isMuted) {
-                    bgMusic.muted = false;
-                    volumeIcon.style.display = 'block';
-                    muteIcon.style.display = 'none';
-                } else {
-                    bgMusic.muted = true;
-                    volumeIcon.style.display = 'none';
-                    muteIcon.style.display = 'block';
-                }
-                isMuted = !isMuted;
-            });
-
-            // Fungsi untuk animasi meniup lilin
-            blowBtn.addEventListener('click', function() {
-                // Tambahkan efek suara tiupan (opsional)
-                const blowSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-candle-blow-738.mp3');
-                blowSound.volume = 0.3;
-                blowSound.play();
-
-                // Animasi api padam
-                flame.classList.add('extinguished');
-
-                // Animasi asap
-                smoke.classList.add('poof');
-
-                // Nonaktifkan tombol setelah ditekan
-                blowBtn.disabled = true;
-                blowBtn.style.opacity = '0.7';
-                blowBtn.style.cursor = 'default';
-
-                // Scroll ke section 2 setelah delay
-                setTimeout(function() {
-                    document.getElementById('section2').scrollIntoView({
-                        behavior: 'smooth'
-                    });
-
-                    // Update navigasi dot
-                    updateNavDots(2);
-                }, 1000);
-            });
-
-            // Fungsi untuk tombol kado
-            giftBtn.addEventListener('click', function() {
-                // Ganti URL ini dengan link kado sesungguhnya
-                const giftUrl = 'https://example.com';
-
-                // Buka link di tab baru
-                window.open(giftUrl, '_blank');
-
-                // Tambahkan efek konfeti (sederhana)
-                createConfetti();
-            });
-
-            // Fungsi untuk membuat efek konfeti
-            function createConfetti() {
-                const colors = ['#ff7e5f', '#feb47b', '#6a11cb', '#2575fc', '#ffcc00'];
-                const confettiCount = 50;
-
-                for (let i = 0; i < confettiCount; i++) {
-                    const confetti = document.createElement('div');
-                    confetti.className = 'confetti';
-                    confetti.style.position = 'fixed';
-                    confetti.style.width = '10px';
-                    confetti.style.height = '10px';
-                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
-                    confetti.style.left = Math.random() * 100 + 'vw';
-                    confetti.style.top = '-10px';
-                    confetti.style.zIndex = '9999';
-                    confetti.style.opacity = '0.8';
-
-                    document.body.appendChild(confetti);
-
-                    // Animasi jatuh
-                    const animation = confetti.animate([
-                        { transform: 'translateY(0) rotate(0deg)', opacity: 0.8 },
-                        { transform: `translateY(${window.innerHeight + 10}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
-                    ], {
-                        duration: 1000 + Math.random() * 2000,
-                        easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)'
-                    });
-
-                    // Hapus elemen setelah animasi selesai
-                    animation.onfinish = () => confetti.remove();
-                }
-            }
-
-            // Fungsi untuk update navigasi dot berdasarkan section yang aktif
-            function updateNavDots(sectionNumber) {
-                navDots.forEach(dot => {
-                    dot.classList.remove('active');
-                    if (parseInt(dot.dataset.section) === sectionNumber) {
-                        dot.classList.add('active');
+                // Event play/pause
+                elements.playPauseBtn.addEventListener('click', function() {
+                    if (isPlaying) {
+                        elements.bgMusic.pause();
+                        isPlaying = false;
+                        elements.playIcon.style.display = 'block';
+                        elements.pauseIcon.style.display = 'none';
+                    } else {
+                        const playPromise = elements.bgMusic.play();
+                        if (playPromise !== undefined) {
+                            playPromise.then(() => {
+                                isPlaying = true;
+                                elements.playIcon.style.display = 'none';
+                                elements.pauseIcon.style.display = 'block';
+                            });
+                        }
                     }
                 });
-            }
 
-            // Event listener untuk navigasi dot
-            navDots.forEach(dot => {
-                dot.addEventListener('click', function() {
-                    const sectionNumber = this.dataset.section;
-                    document.getElementById(`section${sectionNumber}`).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-
-                    updateNavDots(parseInt(sectionNumber));
+                // Event volume slider
+                elements.volumeSlider.addEventListener('input', function() {
+                    currentVolume = parseFloat(this.value);
+                    elements.bgMusic.volume = currentVolume;
                 });
-            });
 
-            // Deteksi scroll untuk update navigasi dot
-            let isScrolling = false;
-            window.addEventListener('scroll', function() {
-                if (isScrolling) return;
+                // Set volume awal
+                elements.bgMusic.volume = currentVolume;
 
-                isScrolling = true;
+                // Coba auto-play setelah 500ms
+                setTimeout(() => {
+                    tryPlayMusic();
+                }, 500);
 
-                setTimeout(function() {
-                    // Cari section yang sedang terlihat
-                    let currentSection = 1;
-                    const scrollPosition = window.scrollY + window.innerHeight / 2;
+                // ============================================
+                // ANIMASI LILIN
+                // ============================================
+                elements.blowBtn.addEventListener('click', function() {
+                    // Suara tiupan
+                    try {
+                        const blowSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-candle-blow-738.mp3');
+                        blowSound.volume = 0.2;
+                        blowSound.play().catch(() => {});
+                    } catch(e) {}
 
-                    sections.forEach((section, index) => {
-                        const sectionTop = section.offsetTop;
-                        const sectionBottom = sectionTop + section.offsetHeight;
+                    // Animasi api padam
+                    elements.flame.classList.add('extinguished');
 
-                        if (scrollPosition >= sectionTop && scrollPosition <= sectionBottom) {
-                            currentSection = index + 1;
-                        }
-                    });
+                    // Multiple smoke particles
+                    for (let i = 0; i < 3; i++) {
+                        setTimeout(() => {
+                            const smokeClone = elements.smoke.cloneNode();
+                            smokeClone.style.setProperty('--smoke-offset', `${(Math.random() - 0.5) * 40}px`);
+                            smokeClone.classList.add('poof');
+                            document.querySelector('.candle-container').appendChild(smokeClone);
 
-                    updateNavDots(currentSection);
-                    isScrolling = false;
-                }, 100);
-            });
+                            setTimeout(() => {
+                                smokeClone.remove();
+                            }, 1800);
+                        }, i * 150);
+                    }
 
-            // Inisialisasi scroll untuk section pertama
-            updateNavDots(1);
+                    // Nonaktifkan tombol
+                    elements.blowBtn.disabled = true;
+                    elements.blowBtn.innerHTML = '<i class="fas fa-check"></i> Lilin telah ditiup';
 
-            // Tambahkan event listener untuk tombol keyboard (untuk navigasi dengan keyboard)
-            document.addEventListener('keydown', function(event) {
-                // Panah bawah atau spasi untuk scroll ke bawah
-                if (event.key === 'ArrowDown' || event.key === ' ') {
-                    event.preventDefault();
-
-                    // Tentukan section berikutnya
-                    let currentSection = 1;
-                    const scrollPosition = window.scrollY + window.innerHeight / 2;
-
-                    sections.forEach((section, index) => {
-                        const sectionTop = section.offsetTop;
-                        const sectionBottom = sectionTop + section.offsetHeight;
-
-                        if (scrollPosition >= sectionTop && scrollPosition <= sectionBottom) {
-                            currentSection = index + 1;
-                        }
-                    });
-
-                    // Scroll ke section berikutnya jika ada
-                    if (currentSection < sections.length) {
-                        document.getElementById(`section${currentSection + 1}`).scrollIntoView({
+                    // Scroll ke section 2
+                    setTimeout(() => {
+                        document.getElementById('section2').scrollIntoView({
                             behavior: 'smooth'
                         });
-                        updateNavDots(currentSection + 1);
+                        updateNavDots(2, elements.navDots);
+                    }, 1000);
+                });
+
+                // ============================================
+                // MODAL KADO
+                // ============================================
+                if (elements.giftBtn) {
+                    // Buat elemen modal jika belum ada
+                    if (!document.getElementById('giftModal')) {
+                        const modalHTML = `
+                            <div class="modal-overlay" id="giftModal">
+                                <div class="modal-content">
+                                    <button class="modal-close" id="modalClose">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+
+                                    <div class="modal-icon">
+                                        <i class="fas fa-gift"></i>
+                                    </div>
+
+                                    <h2 class="modal-title">Kado Spesial Ulang Tahun</h2>
+
+                                    <div class="modal-message">
+                                        <p>Sebuah kado spesial telah dipersiapkan untuk merayakan hari ulang tahunmu yang istimewa.</p>
+                                        <p>Kado ini adalah wujud kasih sayang dan perhatian yang tulus untukmu di hari spesial ini.</p>
+                                        <p>Semoga kado ini bisa membawa senyuman di wajahmu dan kebahagiaan di hatimu.</p>
+                                    </div>
+
+                                    <button class="modal-continue-btn" id="modalContinueBtn">
+                                        <i class="fas fa-external-link-alt"></i> Lihat Kado
+                                    </button>
+                                </div>
+                            </div>
+                        `;
+
+                        document.body.insertAdjacentHTML('beforeend', modalHTML);
                     }
+
+                    // Dapatkan elemen modal
+                    const giftModal = document.getElementById('giftModal');
+                    const modalClose = document.getElementById('modalClose');
+                    const modalContinueBtn = document.getElementById('modalContinueBtn');
+
+                    // Link kado (ganti dengan link Anda)
+                    const GIFT_LINK = "https://athena-consultant.com/"; // GANTI DENGAN LINK KADO ANDA
+
+                    // Event untuk tombol kado
+                    elements.giftBtn.addEventListener('click', function() {
+                        giftModal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    });
+
+                    // Event untuk tombol close modal
+                    modalClose.addEventListener('click', function() {
+                        giftModal.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    });
+
+                    // Event untuk tombol lanjutkan
+                    modalContinueBtn.addEventListener('click', function() {
+                        giftModal.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+
+                        setTimeout(() => {
+                            window.open(GIFT_LINK, '_blank');
+                            createConfetti();
+                        }, 300);
+                    });
+
+                    // Tutup modal jika klik di luar
+                    giftModal.addEventListener('click', function(e) {
+                        if (e.target === giftModal) {
+                            giftModal.classList.remove('active');
+                            document.body.style.overflow = 'auto';
+                        }
+                    });
                 }
 
-                // Panah atas untuk scroll ke atas
-                if (event.key === 'ArrowUp') {
-                    event.preventDefault();
+                // ============================================
+                // NAVIGASI
+                // ============================================
+                function updateNavDots(sectionNumber, navDots) {
+                    navDots.forEach(dot => {
+                        dot.classList.remove('active');
+                        if (parseInt(dot.dataset.section) === sectionNumber) {
+                            dot.classList.add('active');
+                        }
+                    });
+                }
 
-                    // Tentukan section sebelumnya
-                    let currentSection = 1;
+                function getCurrentSection(sections) {
                     const scrollPosition = window.scrollY + window.innerHeight / 2;
+                    let currentSection = 1;
 
                     sections.forEach((section, index) => {
                         const sectionTop = section.offsetTop;
@@ -798,19 +1454,73 @@
                         }
                     });
 
-                    // Scroll ke section sebelumnya jika ada
-                    if (currentSection > 1) {
-                        document.getElementById(`section${currentSection - 1}`).scrollIntoView({
+                    return currentSection;
+                }
+
+                elements.navDots.forEach(dot => {
+                    dot.addEventListener('click', function() {
+                        const sectionNumber = this.dataset.section;
+                        document.getElementById(`section${sectionNumber}`).scrollIntoView({
                             behavior: 'smooth'
                         });
-                        updateNavDots(currentSection - 1);
+                        updateNavDots(parseInt(sectionNumber), elements.navDots);
+                    });
+                });
+
+                let scrollTimeout;
+                window.addEventListener('scroll', function() {
+                    if (scrollTimeout) {
+                        window.cancelAnimationFrame(scrollTimeout);
+                    }
+
+                    scrollTimeout = window.requestAnimationFrame(() => {
+                        const currentSection = getCurrentSection(elements.sections);
+                        updateNavDots(currentSection, elements.navDots);
+                    });
+                });
+
+                // ============================================
+                // FUNGSI TAMBAHAN
+                // ============================================
+                function createConfetti() {
+                    const colors = ['#ff7e5f', '#feb47b', '#6a11cb', '#2575fc'];
+
+                    for (let i = 0; i < 40; i++) {
+                        setTimeout(() => {
+                            const confetti = document.createElement('div');
+                            confetti.style.cssText = `
+                                position: fixed;
+                                width: ${Math.random() * 10 + 6}px;
+                                height: ${Math.random() * 10 + 6}px;
+                                background: ${colors[Math.floor(Math.random() * colors.length)]};
+                                border-radius: ${Math.random() > 0.7 ? '50%' : '30%'};
+                                left: ${Math.random() * 100}vw;
+                                top: -20px;
+                                z-index: 9999;
+                                opacity: ${Math.random() * 0.6 + 0.4};
+                                transform: rotate(${Math.random() * 360}deg);
+                                pointer-events: none;
+                            `;
+
+                            document.body.appendChild(confetti);
+
+                            confetti.animate([
+                                { transform: `translateY(0) rotate(0deg)`, opacity: confetti.style.opacity },
+                                { transform: `translateY(${window.innerHeight + 20}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                            ], {
+                                duration: 1500 + Math.random() * 1000,
+                                easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)'
+                            }).onfinish = () => confetti.remove();
+                        }, i * 30);
                     }
                 }
-            });
 
-            // Tambahkan pesan khusus di console
-            console.log("%c✨ Untuk Cintaku ✨", "color: #ff7e5f; font-size: 18px; font-weight: bold;");
-            console.log("%cSelamat ulang tahun sayang! Semoga landing page sederhana ini bisa menjadi kado digital yang berarti untukmu. ❤️", "color: #5a3d2b; font-size: 14px;");
+                // Pesan console
+                console.log("%c❤️ Untuk Ulfa Arofah ❤️",
+                    "color: #ff7e5f; font-size: 16px; font-weight: bold;");
+                console.log("%cSemoga pesan ini bisa menyentuh hatimu.",
+                    "color: #555; font-size: 14px;");
+            }
         });
     </script>
 </body>
