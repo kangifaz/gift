@@ -970,6 +970,44 @@
             margin-left: auto;
             margin-right: auto;
         }
+        /* Style untuk credentials seperti text markdown */
+        .credentials {
+            margin-top: 25px;
+            padding: 20px;
+            background: rgba(255, 126, 95, 0.08);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 126, 95, 0.2);
+            font-family: 'Courier New', monospace;
+        }
+
+        .credential-item {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .credential-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .credential-label {
+            font-weight: 600;
+            color: #555;
+            min-width: 100px;
+            font-size: 0.95rem;
+        }
+
+        .credential-value {
+            background: rgba(0, 0, 0, 0.05);
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            color: #333;
+            font-weight: 500;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            word-break: break-all;
+            font-size: 0.95rem;
+        }
     </style>
 </head>
 <body>
@@ -1112,13 +1150,24 @@
 
                 <h2 class="modal-title">Athena</h2>
 
-                <div class="modal-message">
-                    <p>Athena project bukan sekedar nama dan konsep yang aku usung secara random. Aku harap ini bisa menjadi setidaknya seperti kado.</p>
-                    <p>Ini bisa dikembangkan menjadi riset yang kompleks dan setidaknya bisa dimanfaatkan sendiri.</p>
-                    <p>Semoga kita masih bisa bersama dengan alasan athena project ini.</p>
-                    <p> Anyway, apakah Prroposalku diterima? Tolong jelaskan by chat / Call ya, ini aku gak tau jawabannya hehe</p>
+               <div class="modal-message">
+                        <p>Athena project bukan sekedar nama dan konsep yang aku usung secara random. Aku harap ini bisa menjadi setidaknya seperti kado.</p>
+                        <p>Ini bisa dikembangkan menjadi riset yang kompleks dan setidaknya bisa dimanfaatkan sendiri.</p>
+                        <p>Semoga kita masih bisa bersama dengan alasan athena project ini.</p>
+                        <p> Anyway, apakah Prroposalku diterima? Tolong jelaskan by chat / Call ya, ini aku gak tau jawabannya hehe</p>
 
-                </div>
+                 <!-- Tambahan username dan password -->
+                 <div class="credentials">
+                   <div class="credential-item">
+                     <span class="credential-label">Username: </span>
+                     <span class="credential-value">ulfa.arafah@gmail.com</span>
+                   </div>
+                   <div class="credential-item">
+                     <span class="credential-label">Password:</span>
+                     <span class="credential-value">MyAthenaisU_grsk</span>
+                   </div>
+                 </div>
+                    </div>
 
                 <button class="modal-continue-btn" id="modalContinueBtn">
                     <i class="fas fa-external-link-alt"></i> Lihat Athena
@@ -1160,7 +1209,7 @@
         const TARGET_DATE_CONFIG = {
             // === EDIT BAGIAN INI SESUAI KEBUTUHAN ===
             // Format: Year, Month (0-11), Day, Hour, Minute, Second
-            targetDate: new Date(2025, 11, 26, 0, 0, 0), // 26 December 2025, 00:00
+            targetDate: new Date(2025, 11, 25, 0, 0, 0), // 26 December 2025, 00:00
             // HAPUS SAJA testMode, tidak perlu dikomen
         };
 
